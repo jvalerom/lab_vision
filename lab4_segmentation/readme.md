@@ -3,50 +3,42 @@
 ## Data
 
 
-The data for this lab can be downloaded from the course server using http or ssh protocols
+The data was downloaded from the course server using http
 
-- `scp vision@<server>:/datos1/vision/images/images.tar.gz .`
 - http://157.253.63.7/images.tar.gz
-
-For using ssh in windows you may use [putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 
-or [filezilla](http://portableapps.com/apps/internet/filezilla_portable)  
-
 
 ## Implement a segmentation method
 
-Implement your own segmentation method using what you have learned in class. It should be a matlab function with the following signature
+I implemented my own segmentation method using what I had learned in class. It was a matlab function with the following signature
 
 ```matlab
-function my_segmentation = segment_by_clustering( rgb_image, feature_space, clustering method, number of clusters)
+function my_segmentation = segment_by_clustering( rgb_image, feature_space, clustering_method, number_of_clusters)
 ```
 Where
 
 - feature_space : 'rgb', 'lab', 'hsv', 'rgb+xy', 'lab+xy', 'hsv+xy'
-- clustering_method = k-means, gmm, hierarchical or watershed (code seen in class).
+- clustering_method = k-means, gmm, hierarchical or watershed.
 
-The output of the function should be an image (or matrix) where each pixel has a cluster label. In other words, pixels that belong to the same cluster should have the same integer label.
+The output of the function is an image where each pixel has a cluster label.
 
 ## Test your function
 
-To test the output of your function use something like
+To test the output of my function I used the test_segment_by_clustering function (with the following signature) that I built in matlab which applies all supported methods and feature spaces to a given image and number of groups.
 
 ```matlab
-image(segm)
-colormap colorcube
+function [] = test_segment_by_clustering(rgbImagePath,number_of_clusters)
 ```
+Where
 
-You should see an image similar to the following, where each color represents a different cluster.
+- rgbImagePath 		: rgb image Pathname
+- number_of_clusters 	: number of clusters.
 
-![Example of segmentation](segmented.png)
-
-Try different parameters of your function, and see which ones work best. **Next week** we will perform a formal test of this function.
 
 ## Notes
 
-- If you run into memory problems try downsampling the image
-- *xy* stands for the spatial _x_ and _y_ coordinates
-- You may need to scale the different channels to make them comparable, or to make some of them more important in the clustering process. For example _coords = ( α\*r, α\*g, α\*b, β\*x, β\*y)_
+- In order not to run into memory problems the original image was initially downsampled and at he end this was upsampled
+- x and y channels was scaled with less weight to make them comparable in calculating the total gradient when using watershed method.
 
 ## End
 
-Upload your function to the repository
+Both segmentation and test functions was uploaded to the repository
