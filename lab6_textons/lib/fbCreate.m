@@ -22,7 +22,7 @@ if nargin<5,elong = 2; end
 support = 3;
 
 
-fb = cell(2*numOrient,numScales);
+fb = cell(2*numOrient + 1,numScales);
 for scale = 1:numScales,
   sigma = startSigma * scaling^(scale-1);
   for orient = 1:numOrient,
@@ -30,5 +30,5 @@ for scale = 1:numScales,
     fb{2*orient-1,scale} = oeFilter(sigma*[elong 1],support,theta, 2,0);
     fb{2*orient,scale} = oeFilter(sigma*[elong 1],support,theta,2,1);
   end
-  %fb{2*numOrient+1,scale} = csFilter(sigma*[3 1],support);
+  fb{2*numOrient+1,scale} = csFilter(sigma*[3 1],support);
 end
