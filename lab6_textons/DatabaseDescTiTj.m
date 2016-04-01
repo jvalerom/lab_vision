@@ -59,7 +59,7 @@ function [ textons ] = DatabaseDescTiTj( fb, databasePath , tIni, tEnd)
 %             textonst = (textonst * (j - 1) + textonsi) / j;
 
             for k = 1:numel(fb),
-                fbvec{k}((i -tIni) * 30 + 1:(i - tIni + 1) * 30,(j -1) * 40 + 1:j * 40) = imf{k}(1:16:end,1:16:end);
+                fbvec{k}((i -tIni) * 30 + 1:(i - tIni + 1) * 30,(j -1) * 40 + 1:j * 40) = imf{k}(13:15.6:end-13,13:15.7:end-13);
             end
             
         end
